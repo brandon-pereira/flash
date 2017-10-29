@@ -7,8 +7,13 @@
  * an SCSS file (to avoid nesting).
  */
 body {
-  background: red;
+  background: #4B4B4B;
 }
-svg {
-  height: 100px;
+.loader {
+  text-align: center;
+  margin-top: 50px;
+}
+.loader svg {
+  height: 300px;
+  width: auto;
 }

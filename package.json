@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "description": "Rapid Prototyping",
   "repository": "https://github.com/brandon-pereira/flash",
-  "dependencies": {},
+  "dependencies": {
+    "animejs": "^2.2.0"
+  },
   "devDependencies": {
     "babel-core": "^6.23.1",
     "babel-eslint": "^8.0.1",
