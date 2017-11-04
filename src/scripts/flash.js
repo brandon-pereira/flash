@@ -14,6 +14,7 @@ export default () => {
 	anime({
 		targets: '.svg-icon #right',
 		translateX: [50, 0],
+		translateY: [50, 0],
 		opacity: [0, 1],
 		easing: 'easeInOutQuart',
 		delay: 600,
@@ -22,8 +23,8 @@ export default () => {
 	anime({
 		targets: '.svg-icon #front-and-top',
 		translateX: [-50, 0],
-		translateY: [-50, 0],
 		opacity: [0, 1],
+		rotateY: [180, 0],
 		delay: 400,
 		easing: 'easeInOutQuart',
 	})

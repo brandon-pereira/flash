@@ -24,6 +24,7 @@ svg {
   color: #000;
   height: 150px;
   transition: transform 0.5s;
+  display: block;
   @include medium() {
     transform: scale(2);
     margin-bottom: 100px;
