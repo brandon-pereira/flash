@@ -1,0 +1,93 @@
+/**
+ * Loaded after critical.css has loaded (above the fold)
+ */
+
+@import 'mixins';
+@import 'config';
+
+/**
+ * Internet Explorer Depreciated Alert
+ */
+.browsehappy-container{
+		height:50px;
+}
+.browsehappy{
+	text-align:center;
+	position:fixed;
+	z-index:3;
+	top:0;
+	left:0;
+	right:0;
+	background:#c90000;
+	border-bottom:1px solid darken(#c90000, 10%);
+	color:#fff;
+	margin:0;
+	line-height:100px;
+	a{
+		color:#fff;
+	}
+}
+
+/**
+ * Webfont Initialzed (helps solve FOUT)
+ */
+html{
+	&.wf-active{
+		body{
+			font:1.2em "Open Sans", sans-serif;
+		}
+    footer .content, .container.skills header.main h2 {
+      font-family: 'Press Start 2P', sans-serif;
+    }
+    .container.projects header.main .maintext {
+      font-family: 'Lily Script One', sans-serif;
+    }
+    .container.apps header.main .maintext{
+      font-family: 'Bungee Shade', sans-serif;
+    }
+	}
+}
+
+/**
+ * Font smoothing for Mac OS.
+ */
+.smoothText {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.uglyText {
+  -webkit-font-smoothing:none;
+  -moz-osx-font-smoothing:auto;
+}
+
+
+/**
+ * Make "Projects" text animated and pretty on webkit/blink browsers.
+ * NOTE: Depends on JS to add .webkit class to HTML.
+ */
+html.webkit .container.projects header.main .maintext:before{
+	text-shadow: none;
+	animation: hue 6s linear infinite;
+	content:attr(data-text);
+	position:absolute;
+	background: linear-gradient(map-get($config, accent), darken(map-get($config, accent), 20%));
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+}
+
+/**
+ * Animations
+ */
+@keyframes hue {
+	0% { filter: hue-rotate(0deg) }
+	100% { filter: hue-rotate(360deg) }
+};
+
+@import 'header';
+@import 'skills';
+@import 'projects';
+@import 'contact';
+@import 'footer';
+@import 'lightbox';
+@import 'apps';
+@import 'g-loader.css';

@@ -1,3 +1,7 @@
-export default () => {
-	console.log("Hello World");
+export default class App {
+
+	constructor(dependencies) {
+		console.log(dependencies);
+	}
+
 }
