@@ -1,11 +1,11 @@
 module.exports = function(config, gulp) {
 	
-	const nunjucks = require('gulp-nunjucks');
+	const nunjucks = require('gulp-nunjucks-render');
 	const data = require('gulp-data');
 	const inlinesource = require('gulp-inline-source');
 	const htmlmin = require('gulp-htmlmin');
 	const browserSync = require('browser-sync').get("server");
-	console.log(require('../src/content/projects.json'));
+	
 	gulp.task('html', () =>
 		gulp.src(config.paths.src.html)
 			.pipe(data(() => ({
@@ -14,7 +14,7 @@ module.exports = function(config, gulp) {
 				skills: require('../src/content/skills.json'),
 				contact: require('../src/content/contact.json')
 			})))
-			.pipe(nunjucks.compile({
+			.pipe(nunjucks({
 				path: ['./src/html', './src'],
 			})).on('error', function(err) {
 				console.log('\x1b[31m', 'nunjucksRender error: ', err.message, '\x1b[0m');
