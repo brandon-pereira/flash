@@ -7,7 +7,7 @@ const optionalDependencies = [ // Dependencies which can be loaded async
 
 const _dependencies = [
     import('./app'),
-    import('../styles/app.scss'),
+    import('../styles/style.scss'),
     ...requiredDependencies,
 ]
 Promise.all(_dependencies)
