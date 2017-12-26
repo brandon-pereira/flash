@@ -9,14 +9,13 @@ const getPlugins = () => {
 		new webpack.optimize.ModuleConcatenationPlugin(), // scope hoisting
 	]
 	
-	if(process.env.NODE_ENV === 'production') {
-		console.log("check");
-		plugins.push(
-			new webpack.optimize.UglifyJsPlugin({
-				minimize: true,
-				sourceMap: true
-			})
-		);
+	if (process.env.NODE_ENV === "production") {
+		plugins.push(...[new webpack.optimize.UglifyJsPlugin({
+			minimize: true,
+			sourceMap: true
+			})]);
+	} else {
+		plugins.push(...[new webpack.SourceMapDevToolPlugin()]);
 	}
 	
 	return plugins;
