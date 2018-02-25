@@ -1,17 +1,24 @@
-const requiredDependencies = [
-    import('./app'),
-    import('../styles/app.scss')
-]
-const optionalDependencies = [ // Dependencies which can be loaded async
-];
+const dependencies = new Map();
+dependencies.set('app', import('./app'));
+dependencies.set('styles', import('../styles/app.scss'));
 
-Promise.all(requiredDependencies)
-    .then(([app]) => { // .then(([dep1, dep2]) =>
-        app();
+Promise.all(dependencies.values())
+    .then(values => setMapToResolvedValues(values))
+    .then(() => {
+        dependencies.get('app')();
         document.body.classList.add('loaded')
-
     })
-    .catch((err) => console.error("Failed to load dependencies.", err))
-
-Promise.all(optionalDependencies)
     .catch((err) => console.error("Failed to load dependencies.", err));
+
+/**
+ * We take the resolved values from Promise.all and we
+ * inject those values back into the map. Since
+ * we know that order is garunteed, this should always map
+ * 1-1 by index.
+ * @param {Array} values
+ */
+const setMapToResolvedValues = (values) => {
+    Array.from(dependencies.keys()).forEach((key, i) => {
+        dependencies.set(key, values[i]);
+    })
+}
