@@ -17,15 +17,3 @@ html.app {
     }
   }
 }
-
-svg {
-  fill: #f1d518;
-  color: #000;
-  transition: transform 0.5s;
-  @include medium() {
-    transform: scale(2);
-  }
-  @include large() {
-    transform: scale(3);
-  }
-}

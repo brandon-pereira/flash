@@ -5,7 +5,7 @@ dependencies.set('styles', import('../styles/app.scss'));
 Promise.all(dependencies.values())
     .then(values => setMapToResolvedValues(values))
     .then(() => {
-        dependencies.get('app')();
+        dependencies.get('app')(dependencies);
         document.body.classList.add('loaded')
     })
     .catch((err) => console.error("Failed to load dependencies.", err));

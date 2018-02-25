@@ -1,3 +1,3 @@
-export default () => {
-	console.log("Hello World");
+export default (dependencies) => {
+	console.log("Hello World", dependencies.get('styles'));
 }
