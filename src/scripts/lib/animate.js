@@ -7,9 +7,11 @@
  * @param  {Options} args Arguments to be sent directly to Element.animate.
  * @return {Element}
  */
-export default (el, ...args) => {
+export default (el, transition, opts, cb) => {
 	if (el && 'animate' in el) {
-		return el.animate(...args)
+		el.animate(transition, opts)
+			.onfinish = cb;
+	} else if (cb) {
+		cb(); // dont animate just call callback
 	}
-	return el;
 }
