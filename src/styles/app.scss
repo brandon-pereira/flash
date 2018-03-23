@@ -1,19 +1,99 @@
 @import 'mixins';
 @import 'config';
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
 
 html.app {
   height: 100%;
   width: 100%;
-  overflow: hidden;
+  font-family: 'Open Sans', 'Helvetica Neue', sans-serif;
 	body {
 		min-height: 100%;
 		margin: 0;
 		width: 100%;
   }
   .loaded {
-    
     .loader {
       display: none;
     }
   }
+}
+
+@import 'header';
+@import 'utils';
+
+article {
+  padding: 2rem 5rem;
+  margin: 0 auto;
+  &.section1 {
+      clip-path: polygon(0 0, 100% 0, 100% 80%, 0% 100%);
+      text-align: right;
+      .column:first-of-type {
+        margin-right: 3rem;
+      }
+  }
+  &.section2 {
+    background: $accent3;
+    clip-path: polygon(0 20%, 100% 0, 100% 100%, 0% 100%);
+    .column:last-of-type {
+      margin-left: 3rem;
+    }
+  }
+  &.section3 {
+    padding: 0;
+    border-bottom: 3px solid $accent3;
+    .column {
+      padding: 2rem;
+      &:first-of-type {
+        padding-left: 0;
+      }
+      &:last-of-type {
+        padding-right: 0;
+      }
+    }
+    .row .column:not(:first-of-type) {
+      border-left: 3px solid $accent3;
+    }
+  }
+  &.section5 {
+    background: #fff;
+    position: relative;
+    .background {
+      clip-path: polygon(0 100%, 100% 0, 100% 100%, 0% 100%);
+      background: $accent3;
+    }
+    .column {
+      color: inherit;
+      text-decoration: none;
+      border-radius: 6px;
+      padding: 1rem 2rem;
+      box-shadow: 0 5px 15px rgba(0,0,0,.15);
+      transition: box-shadow .3s;
+      background: #fff;
+      margin: 0 3rem 0 0;
+      &:hover {
+        box-shadow: 0 15px 25px rgba(0, 0, 0, .15);
+      }
+      &:last-of-type {
+        margin: 0;
+      }
+    }
+  }
+  .row {
+    margin: 0 auto;
+    max-width: 800px;
+  }
+}
+
+footer {
+  background: $accent3;
+  height: 5rem;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  .column {
+    flex: 1;
+  }
+
 }
