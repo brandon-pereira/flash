@@ -92,6 +92,9 @@ footer {
 .row {
   display: flex;
   align-items: center;
+  &.align-top {
+    align-items: flex-start;
+  }
   .column {
     flex: 1;
   }
