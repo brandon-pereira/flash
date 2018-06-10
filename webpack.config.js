@@ -28,6 +28,9 @@ module.exports = {
 		publicPath: '/scripts/',
 		filename: config.naming.scripts
 	},
+	node: {
+		fs: 'empty'
+	},
 	module: {
 		rules: [
 			{
