@@ -23,6 +23,7 @@ const getPlugins = () => {
 
 
 module.exports = {
+	mode: process.env.NODE_ENV === "production" ? "production" : "development",
 	entry: config.paths.src.scripts,
 	output: {
 		publicPath: '/scripts/',
