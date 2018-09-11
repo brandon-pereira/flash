@@ -1,4 +1,3 @@
-import 'babel-polyfill';
 
 const dependencies = new Map();
 dependencies.set('app', import('./app'));
@@ -21,6 +20,6 @@ Promise.all(dependencies.values())
  */
 const setMapToResolvedValues = (values) => {
     Array.from(dependencies.keys()).forEach((key, i) => {
-        dependencies.set(key, values[i]);
+        dependencies.set(key, values[i].default);
     })
 }

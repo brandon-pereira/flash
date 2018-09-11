@@ -40,14 +40,10 @@ module.exports = {
 				use: [{
 					loader: 'babel-loader',
 					options: {
-						presets: [["env", {
-								"targets": {
-								"browsers": ["last 2 versions"]
-							}
-						}]],
+						presets: ["@babel/preset-env"],
 						plugins: [
 							"add-module-exports", // export default will allow you to import without typing .default
-							"dynamic-import-webpack"
+							"@babel/plugin-syntax-dynamic-import"
 						]
 					}
 				}]
