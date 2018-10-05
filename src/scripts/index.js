@@ -4,6 +4,7 @@ dependencies.set('styles', import('../styles/app.scss'));
 
 Promise.all(dependencies.values())
     .then(values => setMapToResolvedValues(values))
+    .then(() => ejectCriticalCss())
     .then(() => {
         dependencies.get('app')(dependencies);
         document.body.classList.add('loaded');
@@ -21,4 +22,8 @@ const setMapToResolvedValues = values => {
     Array.from(dependencies.keys()).forEach((key, i) => {
         dependencies.set(key, values[i].default);
     });
+};
+
+const ejectCriticalCss = () => {
+    document.querySelector('#critical-css').remove();
 };
