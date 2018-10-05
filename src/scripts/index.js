@@ -24,6 +24,11 @@ const setMapToResolvedValues = values => {
     });
 };
 
+/**
+ * We remove the "critical.css" file from the page
+ * once our app is ready. This is useful because usually the files
+ * either cause duplicate code or un-prefixed code.
+ */
 const ejectCriticalCss = () => {
     document.querySelector('#critical-css').remove();
 };
