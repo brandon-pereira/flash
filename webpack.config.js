@@ -6,28 +6,19 @@ const getPlugins = () => {
         new webpack.optimize.MinChunkSizePlugin({
             minChunkSize: 10000
         }),
-        new webpack.optimize.ModuleConcatenationPlugin() // scope hoisting
+        new webpack.optimize.ModuleConcatenationPlugin(), // scope hoisting
     ];
 
-    if (process.env.NODE_ENV === 'production') {
-        plugins.push(
-            ...[
-                new webpack.optimize.UglifyJsPlugin({
-                    minimize: true,
-                    sourceMap: true
-                })
-            ]
-        );
-    } else {
-        plugins.push(...[new webpack.SourceMapDevToolPlugin()]);
+    if(!config.isProduction) {
+        plugins.push(new webpack.SourceMapDevToolPlugin());
     }
-
+    
     return plugins;
 };
 
 module.exports = {
-    mode: process.env.NODE_ENV === 'production' ? 'production' : 'development',
-    devtool: process.env.NODE_ENV === 'production' ? false : 'eval-source-map',
+    mode: config.isProduction ? 'production' : 'development',
+    devtool: config.isProduction ? false : 'eval-source-map',
     entry: config.paths.src.scripts,
     output: {
 		publicPath: 'scripts/', // relative path
