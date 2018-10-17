@@ -6,7 +6,7 @@ const getPlugins = () => {
         new webpack.optimize.MinChunkSizePlugin({
             minChunkSize: 10000
         }),
-        new webpack.optimize.ModuleConcatenationPlugin(), // scope hoisting
+        new webpack.optimize.ModuleConcatenationPlugin() // scope hoisting
     ];
 
     if(!config.isProduction) {
