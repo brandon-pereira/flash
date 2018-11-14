@@ -4,19 +4,20 @@ Flash allows you to quickly and easily build robust web applications with virtua
 
 ## Features
 
-- Modern Stack
-- Define required javascript/css dependencies, show a loader till those dependencies are loaded, and then provides an easy API for accessing those dependencies. (see preloader section)
-- HTML Rendering with [Nunjucks](https://mozilla.github.io/nunjucks/)
-- Critical CSS / JS with `inline` attribute
-- SVG Spritesheet generation
+-   Modern Stack
+-   Define required javascript/css dependencies, show a loader till those dependencies are loaded, and then provides an easy API for accessing those dependencies. (see preloader section)
+-   Progressive Web App Generation (Offline Support)
+-   HTML Rendering with [Nunjucks](https://mozilla.github.io/nunjucks/)
+-   Critical CSS / JS with `inline` attribute
+-   SVG Spritesheet generation
 
 ## Styles
 
 Flash works on the principle of two types of stylesheets. Critical stylesheets (which get included on render), and 'passive stylesheets', which get included async.
 
-- **Critical Styling:** Anything critical should be added to `./src/styles/critical.scss`. **These are added to the HTML head directly and will impact initial render**. Avoid using this file!
-- **Add-on Styling:** Anything that's add-on should be added to `./src/styles/app.scss`. These are styles which are loaded async after the page is done loading.
-- **Component Styling:** In your Javascript, when creating a new component you can import a scss file to include the stylesheet.
+-   **Critical Styling:** Anything critical should be added to `./src/styles/critical.scss`. **These are added to the HTML head directly and will impact initial render**. Avoid using this file!
+-   **Add-on Styling:** Anything that's add-on should be added to `./src/styles/app.scss`. These are styles which are loaded async after the page is done loading.
+-   **Component Styling:** In your Javascript, when creating a new component you can import a scss file to include the stylesheet.
 
 The benefit to the three files is page load. That's the main goal of Flash.
 
@@ -32,10 +33,10 @@ dependencies.set('dependency1', import('./dependency1'));
 dependencies.set('dependency2', import('./dependency2'));
 
 // app.js
-export default (dependencies) => {
-    const dependency1 = dependencies.get('dependency1')
+export default dependencies => {
+    const dependency1 = dependencies.get('dependency1');
     dependency1.setRenderer(document.body);
-}
+};
 ```
 
 Once your dependencies are loaded, app.js will be called and the preloader will go away.
@@ -43,6 +44,14 @@ Once your dependencies are loaded, app.js will be called and the preloader will 
 Using a pre-loader can improve the perceived load time drastically.
 
 ## HTML Rendering
+
+TODO
+
+## SVG Usage
+
+TODO
+
+## Progressive Web App Usage
 
 TODO
 
@@ -59,5 +68,5 @@ git remote remove origin
 
 ## TODO
 
-- Generate app manifest
-- Documentation
+-   Generate app manifest
+-   Documentation

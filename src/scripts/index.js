@@ -9,6 +9,7 @@ Promise.all(dependencies.values())
         dependencies.get('app')(dependencies);
         document.body.classList.add('loaded');
     })
+    .then(() => import('./lib/sw-registrar'))
     .catch(err => console.error('Failed to load dependencies.', err));
 
 /**

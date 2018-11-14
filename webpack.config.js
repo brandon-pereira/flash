@@ -1,21 +1,30 @@
 const config = require('./config');
 const webpack = require('webpack');
+const OfflinePlugin = require('offline-plugin');
 
 const getPlugins = () => {
     const plugins = [
         new webpack.optimize.MinChunkSizePlugin({
             minChunkSize: 10000
         }),
-        new webpack.optimize.ModuleConcatenationPlugin(), // scope hoisting
+        new webpack.optimize.ModuleConcatenationPlugin(),
         new webpack.DefinePlugin({
+            // scope hoisting
             PRODUCTION: JSON.stringify(process.env.NODE_ENV === 'production')
-          })
+        }),
+        new OfflinePlugin({
+            ServiceWorker: {
+                output: '../sw.js',
+                events: true
+            },
+            externals: ['/']
+        })
     ];
 
-    if(!config.isProduction) {
+    if (!config.isProduction) {
         plugins.push(new webpack.SourceMapDevToolPlugin());
     }
-    
+
     return plugins;
 };
 
@@ -24,7 +33,7 @@ module.exports = {
     devtool: config.isProduction ? false : 'eval-source-map',
     entry: config.paths.src.scripts,
     output: {
-		publicPath: 'scripts/', // relative path
+        publicPath: 'scripts/', // relative path
         filename: config.naming.scripts
     },
     node: {
