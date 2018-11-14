@@ -43,6 +43,10 @@ Once your dependencies are loaded, app.js will be called and the preloader will 
 
 Using a pre-loader can improve the perceived load time drastically.
 
+## Leveraging Async/Await
+
+[Async functions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function) enable you to more cleanly write promises in Javascript. Flash has the ability to parse and interpret async functions, however it requires a browser polyfill for older browsers. To enable this polyfill, Un-comment the `import 'babel-polyfill';` line from `./scripts/index.js`. None of Flashes core functionality uses async/await, this means that you don't need this polyfill unless your application intends to leverage it.
+
 ## HTML Rendering
 
 TODO

@@ -1,3 +1,6 @@
+// Un-comment below line to leverage async/await
+// import 'babel-polyfill';
+
 const dependencies = new Map();
 dependencies.set('app', import('./app'));
 dependencies.set('styles', import('../styles/app.scss'));
