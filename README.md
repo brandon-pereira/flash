@@ -4,20 +4,20 @@ Flash allows you to quickly and easily build robust web applications with virtua
 
 ## Features
 
--   Modern Stack
--   Define required javascript/css dependencies, show a loader till those dependencies are loaded, and then provides an easy API for accessing those dependencies. (see preloader section)
--   Progressive Web App Generation (Offline Support)
--   HTML Rendering with [Nunjucks](https://mozilla.github.io/nunjucks/)
--   Critical CSS / JS with `inline` attribute
--   SVG Spritesheet generation
+- Modern Stack
+- Define required javascript/css dependencies, show a loader till those dependencies are loaded, and then provides an easy API for accessing those dependencies. (see preloader section)
+- Progressive Web App Generation (Offline Support)
+- HTML Rendering with [Nunjucks](https://mozilla.github.io/nunjucks/)
+- Critical CSS / JS with `inline` attribute
+- SVG Spritesheet generation
 
 ## Styles
 
 Flash works on the principle of two types of stylesheets. Critical stylesheets (which get included on render), and 'passive stylesheets', which get included async.
 
--   **Critical Styling:** Anything critical should be added to `./src/styles/critical.scss`. **These are added to the HTML head directly and will impact initial render**. Avoid using this file!
--   **Add-on Styling:** Anything that's add-on should be added to `./src/styles/app.scss`. These are styles which are loaded async after the page is done loading.
--   **Component Styling:** In your Javascript, when creating a new component you can import a scss file to include the stylesheet.
+- **Critical Styling:** Anything critical should be added to `./src/styles/critical.scss`. **These are added to the HTML head directly and will impact initial render**. Avoid using this file!
+- **Add-on Styling:** Anything that's add-on should be added to `./src/styles/app.scss`. These are styles which are loaded async after the page is done loading.
+- **Component Styling:** In your Javascript, when creating a new component you can import a scss file to include the stylesheet.
 
 The benefit to the three files is page load. That's the main goal of Flash.
 
@@ -43,21 +43,37 @@ Once your dependencies are loaded, app.js will be called and the preloader will 
 
 Using a pre-loader can improve the perceived load time drastically.
 
-## Leveraging Async/Await
-
-[Async functions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function) enable you to more cleanly write promises in Javascript. Flash has the ability to parse and interpret async functions, however it requires a browser polyfill for older browsers. To enable this polyfill, Un-comment the `import 'babel-polyfill';` line from `./scripts/index.js`. None of Flashes core functionality uses async/await, this means that you don't need this polyfill unless your application intends to leverage it.
-
 ## HTML Rendering
 
-TODO
+Flash provides the ability to render HTML dynamically. This is useful if you want to build a static site or simply separate your code into different files.
+
+We are leveraging [Nunjucks](https://mozilla.github.io/nunjucks/) for this. Their documentation is excellent, and we're already using it a bit in the `./src/html/` folder to load the HTML head in dynamically.
+
+We also use an `inline` tag which can be applied to svgs, css, or javascript to inline that file directly into the HTML. Although this should be used with caution (can create a lot of bloat), it is nice and is used internally to inline the critical css.
 
 ## SVG Usage
 
-TODO
+Flash abstracts away the nuances of using SVGs (minification, sprite sheets, etc.) so you can focus on the good stuff. Here are a couple of options for leveraging SVGs.
+
+- **Inlining via Nunjucks** - This method is good if the SVG will only be used once. If it's used more than once, it's not good because this generates duplicate markup.
+
+```html
+{% include "./svgs/loader.svg" %}
+```
+
+- **Sprite sheet** - This method is good if the SVG is used in multiple spots or is used on multiple pages. The benefit is that the SVGs are loaded from an external file (which can be cached) and are referenced using an ID.
+
+```html
+<svg><use xlink:href="/icons.svg#your-svg-file-name"></use></svg>
+```
 
 ## Progressive Web App Usage
 
 TODO
+
+## Leveraging Async/Await
+
+[Async functions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function) enable you to more cleanly write promises in Javascript. Flash has the ability to parse and interpret async functions, however it requires a browser polyfill for older browsers. To enable this polyfill, Un-comment the `import 'babel-polyfill';` line from `./scripts/index.js`. None of Flashes core functionality uses async/await, this means that you don't need this polyfill unless your application intends to leverage it.
 
 ## Setting up
 
@@ -72,5 +88,5 @@ git remote remove origin
 
 ## TODO
 
--   Generate app manifest
--   Documentation
+- Generate app manifest
+- Document the PWA portion
