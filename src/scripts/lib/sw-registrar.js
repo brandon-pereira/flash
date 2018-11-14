@@ -1,15 +1,19 @@
-import OfflinePluginRuntime from 'offline-plugin/runtime';
-
 class ServiceWorkerRegistrar {
     constructor() {
+        this.OfflinePluginRuntime = null;
         this.onUpdateAvailableCallbacks = [];
         this._init();
     }
 
     _init() {
-        OfflinePluginRuntime.install({
-            onUpdateReady: () => this._whenUpdateAvailable(),
-            onUpdated: () => this._whenUpdateCompleted()
+        this.OfflinePluginRuntime = import('offline-plugin/runtime').then(
+            dep => dep.default
+        );
+        this.OfflinePluginRuntime.then(OfflinePluginRuntime => {
+            OfflinePluginRuntime.install({
+                onUpdateReady: () => this._whenUpdateAvailable(),
+                onUpdated: () => this._whenUpdateCompleted()
+            });
         });
     }
 
@@ -19,7 +23,9 @@ class ServiceWorkerRegistrar {
      * incase required.
      */
     checkForUpdates() {
-        OfflinePluginRuntime.update();
+        this.OfflinePluginRuntime.then(OfflinePluginRuntime =>
+            OfflinePluginRuntime.update()
+        );
     }
 
     /**
@@ -30,7 +36,9 @@ class ServiceWorkerRegistrar {
      * NOTE: This will trigger window reload!
      */
     applyUpdates() {
-        OfflinePluginRuntime.applyUpdate();
+        this.OfflinePluginRuntime.then(OfflinePluginRuntime =>
+            OfflinePluginRuntime.applyUpdate()
+        );
     }
 
     /**
