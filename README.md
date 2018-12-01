@@ -1,15 +1,31 @@
 # Flash
 
-Flash allows you to quickly and easily build robust web applications and websites. It takes care of the heavy lifting  and provides you with a shell for your application.
+Flash allows you to quickly and easily build robust web applications and websites. It takes care of the heavy lifting and provides you with a shell for your application. Our goal is simple, provide the user with your website as fast as possible.
 
 ## Features
 
-- Built-in support for ES6 (including [async/await](leveraging-async-await))
-- Define required javascript/css dependencies, show a loader till those dependencies are loaded, and then provides an easy API for accessing those dependencies. (see preloader section)
-- Progressive Web App Generation (Offline Support)
-- HTML Rendering with [Nunjucks](https://mozilla.github.io/nunjucks/)
-- Critical CSS / JS with `inline` attribute
-- SVG Spritesheet generation
+- **Code Modern 🚀**  Built-in support for ES6 (including [async/await](#leveraging-async-await))
+- **[Preloader](#preloader) 🕰** - Display a preloader or app shell while your full application loads.
+- **[Dependency Manager](#preloader) 📦** - On top of supporting ES6 dynamic imports, we also provide you with a dependency manager for your css and javascript.
+- **[Progress Web App 🏇](#progressive-web-app-usage)** - Flash builds you a service worker which caches all your dependencies, this means **built-in offline support!**
+- **[Static Site Generator 🏢](#html-rendering)** - HTML can be built using data sources and also be separated into multiple files.
+- **[Critical CSS/JS 🎨](#html-rendering)** - Define critical styles and scripts to be loaded in the head. This improves perceived performance.
+- **[SVGs Everywhere 📐](#svg-usage)** - Flash provides you with multiple ways to leverage SVGs out of the box.
+
+## Install
+
+Currently Flash is installed with the full configuration exposed. This means you can easily modify it to your liking.
+
+To install run the below, Replacing "myapp" with the name of your application or website.
+
+```bash
+mkdir myapp
+cd myapp
+git init
+git remote add origin git@github.com:brandon-pereira/flash.git
+git pull origin master
+git remote remove origin
+```
 
 ## Styles
 
@@ -21,7 +37,7 @@ Flash works on the principle of two types of stylesheets. Critical stylesheets (
 
 The benefit to the three files is page load. That's the main goal of Flash.
 
-## Pre-loader
+## Preloader
 
 Flash has a built in pre-loader. This is what is shown after the dom is rendered, but before the required styles and javascript have been loaded.
 
@@ -74,17 +90,6 @@ TODO
 ## Leveraging Async Await
 
 [Async functions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function) enable you to more cleanly write promises in Javascript. Flash has the ability to parse and interpret async functions, however it requires a browser polyfill for older browsers. To enable this polyfill, Un-comment the `import 'babel-polyfill';` line from `./scripts/index.js`. None of Flashes core functionality uses async/await, this means that you don't need this polyfill unless your application intends to leverage it.
-
-## Setting up
-
-```bash
-mkdir myapp
-cd myapp
-git init
-git remote add origin git@github.com:brandon-pereira/flash.git
-git pull origin master
-git remote remove origin
-```
 
 ## TODO
 
