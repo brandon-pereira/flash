@@ -1,10 +1,10 @@
 # Flash
 
-Flash allows you to quickly and easily build robust web applications with virtually any tech stack. It takes care of the heavy lifting (see features below), and provides you with a good solid shell for your application.
+Flash allows you to quickly and easily build robust web applications and websites. It takes care of the heavy lifting  and provides you with a shell for your application.
 
 ## Features
 
-- Modern Stack
+- Built-in support for ES6 (including [async/await](leveraging-async-await))
 - Define required javascript/css dependencies, show a loader till those dependencies are loaded, and then provides an easy API for accessing those dependencies. (see preloader section)
 - Progressive Web App Generation (Offline Support)
 - HTML Rendering with [Nunjucks](https://mozilla.github.io/nunjucks/)
@@ -71,7 +71,7 @@ Flash abstracts away the nuances of using SVGs (minification, sprite sheets, etc
 
 TODO
 
-## Leveraging Async/Await
+## Leveraging Async Await
 
 [Async functions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function) enable you to more cleanly write promises in Javascript. Flash has the ability to parse and interpret async functions, however it requires a browser polyfill for older browsers. To enable this polyfill, Un-comment the `import 'babel-polyfill';` line from `./scripts/index.js`. None of Flashes core functionality uses async/await, this means that you don't need this polyfill unless your application intends to leverage it.
 
