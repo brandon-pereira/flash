@@ -1,56 +1,35 @@
 header {
-    background: linear-gradient(rgba(0, 0, 0, .1), rgba(0, 0, 0, .3)), $accent1;
-    background-image: linear-gradient(25deg, #2849b7, #4d6ec5, #6794d3, #7cbbe0);
-    color: #fff;
+    background: linear-gradient(to bottom, #e1efff, #b4cfff);
+    color: #2b2b2b;
     text-align: center;
     padding: 1rem 0 5rem;
     clip-path: polygon(0 0, 100% 0, 100% 90%, 0% 100%);
     position: relative;
-    // .background {
-    //     display: grid;
-    //     grid-template-columns: repeat(3, 1fr);
-    //     grid-template-rows: repeat(3, 1fr);
-    //     transform: rotate(-5deg);
-    //     div {
-    //         grid-column: 3;
-    //         grid-row: 1;
-    //         background: blue;
-    //     }
-    // }
+    filter: drop-shadow(0 1px red);
     svg {
         height: 8rem;
         color: #000;
         fill: $accent2;
-        animation: shake 4s infinite linear alternate;
+        filter: drop-shadow(1px 3px 3px rgba(0, 0, 0, 0.3));
     }
     .heading-first {
         line-height: 80px;
         margin: 0;
-        text-shadow: 2px 2px rgba(0, 0, 0, .6);
-        @include responsive-font(15vw, 50px, 90px)
+        @include responsive-font(15vw, 50px, 90px);
     }
     .heading-second {
         font-weight: 500;
         margin: 0.5rem 0 0;
-        text-shadow: 2px 2px rgba(0, 0, 0, .3);
         @include responsive-font(6vw, 20px, 30px);
     }
     p {
         margin: 2rem auto 0;
-        text-shadow: 2px 2px rgba(0, 0, 0, .3);
         @include responsive-font(5vw, 16px, 22px);
         max-width: 30%;
     }
     .cta {
         margin: 1rem 0 0;
-    }
-}
-
-@keyframes shake {
-    from {
-        transform: rotate(10deg) scale(0.8);
-    }
-    to {
-        transform: rotate(-40deg);
+        position: relative;
+        z-index: 1;
     }
 }

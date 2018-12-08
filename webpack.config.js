@@ -11,18 +11,21 @@ const getPlugins = () => {
         new webpack.DefinePlugin({
             // scope hoisting
             PRODUCTION: JSON.stringify(process.env.NODE_ENV === 'production')
-        }),
-        new OfflinePlugin({
-            ServiceWorker: {
-                output: '../sw.js',
-                events: true
-            },
-            externals: ['/']
         })
     ];
 
     if (!config.isProduction) {
         plugins.push(new webpack.SourceMapDevToolPlugin());
+    } else {
+        plugins.push(
+            new OfflinePlugin({
+                ServiceWorker: {
+                    output: '../sw.js',
+                    events: true
+                },
+                externals: ['/']
+            })
+        );
     }
 
     return plugins;
