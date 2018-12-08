@@ -47,4 +47,11 @@ export default (dependencies) => {
 				easing: 'linear'
 			});
 		})
+
+	ServiceWorkerRegistrar.onUpdateAvailable(() => {
+		console.log('Update Available');
+		document.querySelector('h1').addEventListener('click', function () {
+			ServiceWorkerRegistrar.applyUpdates();
+		});
+	});
 }
