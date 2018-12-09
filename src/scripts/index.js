@@ -4,6 +4,8 @@
 const dependencies = new Map();
 dependencies.set('app', import('./app'));
 dependencies.set('styles', import('../styles/app.scss'));
+dependencies.set('sw-registrar', import('./lib/sw-registrar'));
+dependencies.set('scroll-text', import('scroll-text'));
 
 Promise.all(dependencies.values())
     .then(values => setMapToResolvedValues(values))
@@ -12,7 +14,6 @@ Promise.all(dependencies.values())
         dependencies.get('app')(dependencies);
         document.body.classList.add('loaded');
     })
-    .then(() => import('./lib/sw-registrar'))
     .catch(err => console.error('Failed to load dependencies.', err));
 
 /**

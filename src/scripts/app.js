@@ -1,18 +1,19 @@
-import ServiceWorkerRegistrar from './lib/sw-registrar';
-
 export default dependencies => {
-    console.log('Hello World', dependencies.get('styles'));
-    import('scroll-text').then(ScrollText => {
-        console.log(ScrollText);
-        ScrollText = ScrollText.default;
-        Array.from(document.querySelectorAll('[data-scroll-text]')).map(
-            el => new ScrollText(el)
-        );
-    });
+    // Define Dependencies Locally
+    const ScrollText = dependencies.get('scroll-text');
+    const ServiceWorkerRegistrar = dependencies.get('sw-registrar');
 
+    // Instantiate ScrollText
+    Array.from(document.querySelectorAll('[data-scroll-text]')).map(
+        el => new ScrollText(el)
+    );
+
+    // Instantiate Service Worker Callbacks
     ServiceWorkerRegistrar.onUpdateAvailable(() => {
         console.log('Update Available');
-        document.querySelector('h1').addEventListener('click', function() {
+        const fab = document.querySelector('.fab');
+        fab.classList.add('visible');
+        fab.addEventListener('click', function() {
             ServiceWorkerRegistrar.applyUpdates();
         });
     });
