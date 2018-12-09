@@ -20,7 +20,7 @@
         "css-loader": "^2.0.0",
         "del": "^3.0.0",
         "eslint": "^5.9.0",
-        "gulp": "github:gulpjs/gulp#4.0",
+        "gulp": "^4.0.0",
         "gulp-htmlmin": "^5.0.1",
         "gulp-inline-source": "^4.0.0",
         "gulp-nunjucks-render": "^2.2.2",
